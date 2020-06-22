@@ -11,3 +11,7 @@ build/
 .DS_Store
 local.properties
 apidoc
+# nodejs
+node_modules
+yarn-debug.log*
+yarn-error.log*

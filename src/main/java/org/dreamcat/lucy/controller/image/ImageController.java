@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = AppConfig.API_VERSION + "/image", method = RequestMethod.POST)
 public class ImageController {
 
-    @RequestMapping(path = AppConfig.API_VERSION + "/q2code", method = RequestMethod.POST)
+    @RequestMapping(path = "/q2code")
     public String count() {
         return null;
     }
 
-    @RequestMapping(path = AppConfig.API_VERSION + "/banner", method = RequestMethod.POST)
+    @RequestMapping(path = "/banner")
     public String banner() {
         return null;
     }
