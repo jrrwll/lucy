@@ -38,8 +38,8 @@ public class CryptController {
      *     "success": false,
      *     "msg": "encrypt failed"
      * }
-     * @apiError (Error 400 code = -1) code unsupported algorithm
-     * @apiError (Error 500 code = -1) code encrypt failed
+     * @apiError (Error 400 code = - 1) code unsupported algorithm
+     * @apiError (Error 500 code = - 1) code encrypt failed
      * </pre>
      */
     @RequestMapping(path = "/encrypt")
@@ -68,7 +68,7 @@ public class CryptController {
      *     "success": false,
      *     "msg": "decrypt failed"
      * }
-     * @apiError (Error 400 code = -1) code unsupported algorithm, or decrypt failed
+     * @apiError (Error 400 code = - 1) code unsupported algorithm, or decrypt failed
      * </pre>
      */
     @RequestMapping(path = "/decrypt")
@@ -98,8 +98,8 @@ public class CryptController {
      *     "success": false,
      *     "msg": "sign failed"
      * }
-     * @apiError (Error 400 code = -1) code unsupported algorithm or format
-     * @apiError (Error 500 code = -1) code sign failed
+     * @apiError (Error 400 code = - 1) code unsupported algorithm or format
+     * @apiError (Error 500 code = - 1) code sign failed
      * </pre>
      */
     @RequestMapping(path = "/sign")
@@ -130,8 +130,8 @@ public class CryptController {
      *     "success": false,
      *     "msg": "sign failed"
      * }
-     * @apiError (Error 400 code = -1) code unsupported algorithm or format
-     * @apiError (Error 500 code = -1) code sign failed
+     * @apiError (Error 400 code = - 1) code unsupported algorithm or format
+     * @apiError (Error 500 code = - 1) code sign failed
      * </pre>
      */
     @RequestMapping(path = "/sign/file")

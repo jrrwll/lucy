@@ -20,7 +20,7 @@ export function unBackslash(str, backslash = '\\') {
 }
 
 export function anyMatch(str, ...patterns) {
-    for(let i in patterns) {
+    for (let i in patterns) {
         let pattern = patterns[i];
         if (RegExp(pattern).test(str)) return true;
     }
@@ -28,7 +28,7 @@ export function anyMatch(str, ...patterns) {
 }
 
 export function allMatch(str, ...patterns) {
-    for(let i in patterns) {
+    for (let i in patterns) {
         let pattern = patterns[i];
         if (!RegExp(pattern).test(str)) return false;
     }
@@ -36,7 +36,7 @@ export function allMatch(str, ...patterns) {
 }
 
 export function anyExt(filename, ...exts) {
-    for(let i in exts) {
+    for (let i in exts) {
         let ext = exts[i];
         if (RegExp(`.*\\.${ext}`).test(filename)) return true;
     }
@@ -54,12 +54,12 @@ export function getTextWidth(text) {
     return width;
 }
 
-export function reapt(c, n){
+export function reapt(c, n) {
     if (typeof n !== 'number') return null
     const num = Number(n)
-    if (num < 0 || num > (1<<16)) return null
+    if (num < 0 || num > (1 << 16)) return null
     let s = ""
-    for (let i=0; i<n; i++) {
+    for (let i = 0; i < n; i++) {
         s += c;
     }
     return s;
@@ -84,7 +84,7 @@ export function unreaptStrings(s) {
     let strs = []
     let repeats = []
     let lastChar
-    for (let i = 0, size = s.length; i<size; i++) {
+    for (let i = 0, size = s.length; i < size; i++) {
         let c = s[i]
         if (c !== lastChar) {
             repeats.push(1)

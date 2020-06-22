@@ -62,7 +62,7 @@ public class ShortenServiceImpl implements ShortenService {
         }
         entity.setUrl(url);
 
-        int i =  width.get();
+        int i = width.get();
         for (var hash = hashGenerator.hash(url, i++); i <= 12; ) {
             entity.setHash(hash);
 

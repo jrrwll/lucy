@@ -19,5 +19,5 @@ public class NetworkSeriveImpl implements NetworkSerive {
         if (ip != null) return ip;
         return request.getRemoteAddr();
     }
-    
+
 }

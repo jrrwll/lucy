@@ -22,7 +22,7 @@ public class LucyShortenServiceImpl implements LucyShortenService {
         var passwd = entity.getPassword();
         if (passwd != null) {
             boolean forbidden = true;
-            if (password != null ) {
+            if (password != null) {
                 if (MD5Util.md5Base64(password).equals(passwd)) {
                     forbidden = false;
                 }

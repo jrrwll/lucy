@@ -77,8 +77,9 @@ export function getInternalIP(callback) {
     //compatibility for firefox and chrome
     window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
 
-    const pc = new RTCPeerConnection({iceServers:[]});
-    const noop = () => {};
+    const pc = new RTCPeerConnection({iceServers: []});
+    const noop = () => {
+    };
 
     //listen for candidate events
     pc.onicecandidate = (ice) => {

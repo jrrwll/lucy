@@ -1,12 +1,13 @@
 import {FormattedMessage} from "react-intl";
 import React from "react";
-import { Layout, Menu } from 'antd';
-const { Header } = Layout;
+import {Layout, Menu} from 'antd';
+
+const {Header} = Layout;
 
 export default function HeadArea() {
     return (
         <Header>
-            <div className="logo" />
+            <div className="logo"/>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']}>
                 <Menu.Item key="home"><FormattedMessage id="common.head.home"/></Menu.Item>
                 <Menu.Item key="shorten"><FormattedMessage id="common.head.shorten"/></Menu.Item>

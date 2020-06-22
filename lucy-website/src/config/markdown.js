@@ -1,7 +1,5 @@
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
-import _ from 'lodash';
-import {choose, getSearchValue} from "../util";
 
 // const md = new MarkdownIt({
 //     html:         false,        // Enable HTML tags in source

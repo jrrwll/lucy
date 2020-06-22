@@ -72,7 +72,7 @@ public class CryptServiceImpl implements CryptService {
 
         byte[] sign;
         if (algorithm.equals("md5")) {
-                sign = SignUtil.md5(text);
+            sign = SignUtil.md5(text);
         } else {
             try {
                 sign = switch (algorithm) {
@@ -88,7 +88,7 @@ public class CryptServiceImpl implements CryptService {
             }
         }
 
-        return switch (format){
+        return switch (format) {
             case "hex" -> ByteUtil.hex(sign);
             case "base64" -> Base64Util.encodeAsString(sign);
             default -> throw new BadRequestException("unsupported format " + format);
@@ -122,7 +122,7 @@ public class CryptServiceImpl implements CryptService {
             throw new InternalServerErrorException("I/O error");
         }
 
-        return switch (format){
+        return switch (format) {
             case "hex" -> ByteUtil.hex(sign);
             case "base64" -> Base64Util.encodeAsString(sign);
             default -> throw new BadRequestException("unsupported format " + format);
