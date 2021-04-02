@@ -1,5 +1,6 @@
 package org.dreamcat.lucy.service.impl;
 
+import java.math.BigInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dreamcat.common.crypto.MD5Util;
@@ -35,7 +36,7 @@ public class ShortenServiceImpl implements ShortenService {
 
     @PostConstruct
     public void init() {
-        width = new AtomicInteger(properties.getHash().getMinWidth());
+        width = new AtomicInteger(properties.getShorten().getMinWidth());
     }
 
     @Override
@@ -43,13 +44,13 @@ public class ShortenServiceImpl implements ShortenService {
         url = URLDecoder.decode(url, StandardCharsets.UTF_8);
 
         boolean unauthorized = false;
-        if (ttl > 12 * 30 * 24 * 3600) {
+        if (ttl > properties.getShorten().getUnauthorizedMaxTtl()) {
             if (token == null) {
                 unauthorized = true;
+            } else {
+                var account = accountDao.findByToken(token);
+                if (account == null) unauthorized = true;
             }
-
-            var account = accountDao.findByToken(token);
-            if (account == null) unauthorized = true;
         }
 
         if (unauthorized) {
@@ -63,7 +64,11 @@ public class ShortenServiceImpl implements ShortenService {
         entity.setUrl(url);
 
         int i = width.get();
-        for (var hash = hashGenerator.hash(url, i++); i <= 12; ) {
+        int maxWidth = properties.getShorten().getMaxWidth();
+        int desiredMaxWidth = properties.getShorten().getDesiredMaxWidth();
+        byte[] digest = MD5Util.md5(url);
+        BigInteger n = new BigInteger(digest);
+        for (var hash = StringUtil.mappingTo62(n, i); i <= maxWidth; i++) {
             entity.setHash(hash);
 
             var res = cassandraTemplate.insert(entity, InsertOptions.builder()
@@ -80,12 +85,12 @@ public class ShortenServiceImpl implements ShortenService {
             }
             // Note that there is a hash conflict
             var currentWidth = width.get();
-            if (currentWidth < properties.getHash().getDesiredMaxWidth()) {
+            if (currentWidth < desiredMaxWidth) {
                 width.compareAndSet(currentWidth, currentWidth + 1);
             }
         }
 
-        throw new InternalServerErrorException("hash width is over 12");
+        throw new InternalServerErrorException("hash width overflow");
     }
 
 }

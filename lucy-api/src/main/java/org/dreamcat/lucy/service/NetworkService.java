@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Create by tuke on 2020/6/22
  */
-public interface NetworkSerive {
+public interface NetworkService {
 
-    String ip(HttpServletRequest request);
+    String detectIP(HttpServletRequest request);
 }

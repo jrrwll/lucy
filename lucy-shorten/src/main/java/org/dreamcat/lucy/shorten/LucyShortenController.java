@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 public class LucyShortenController {
+
     private final LucyShortenService service;
 
     /**

@@ -1,3 +1,4 @@
+
 dependencies {
     implementation project(':lucy-core')
 
@@ -5,13 +6,10 @@ dependencies {
     compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    testImplementation 'io.projectreactor:reactor-test'
-    testImplementation "org.dreamcat:common-hc:$COMMON_VERSION"
-    testImplementation "com.squareup.okhttp3:okhttp:4.5.0"
-    testImplementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    // third part library
+    implementation 'com.google.googlejavaformat:google-java-format:1.8'
 }

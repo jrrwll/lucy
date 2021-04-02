@@ -1,3 +1,5 @@
 rootProject.name = 'lucy'
-include 'lucy-shorten'
 include 'lucy-core'
+include 'lucy-api'
+include 'lucy-shorten'
+include 'lucy-imgurl'

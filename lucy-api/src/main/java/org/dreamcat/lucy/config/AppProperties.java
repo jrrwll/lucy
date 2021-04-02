@@ -9,11 +9,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties(prefix = "app")
 public class AppProperties {
-    private Hash hash = new Hash();
+
+    private Shorten shorten = new Shorten();
+    private ImageUrl imageUrl = new ImageUrl();
 
     @Data
-    public static class Hash {
+    public static class Shorten {
+
         private int minWidth = 3;
         private int desiredMaxWidth = 6;
+        private int maxWidth = 12;
+        private int unauthorizedMaxTtl = 3 * 30 * 24 * 3600; // three months
+    }
+
+    @Data
+    public static class ImageUrl {
+
+        private String basePath;
     }
 }

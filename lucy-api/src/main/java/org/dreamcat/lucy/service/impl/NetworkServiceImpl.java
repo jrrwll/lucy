@@ -1,7 +1,7 @@
 package org.dreamcat.lucy.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.dreamcat.lucy.service.NetworkSerive;
+import org.dreamcat.lucy.service.NetworkService;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Slf4j
 @Service
-public class NetworkSeriveImpl implements NetworkSerive {
+public class NetworkServiceImpl implements NetworkService {
 
     @Override
-    public String ip(HttpServletRequest request) {
+    public String detectIP(HttpServletRequest request) {
         var ip = request.getHeader("X-Real-IP");
         if (ip != null) return ip;
         return request.getRemoteAddr();

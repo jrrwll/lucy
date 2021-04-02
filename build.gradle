@@ -1,24 +1,18 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.3.1.RELEASE' apply false
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE' apply false
+    id 'org.springframework.boot' version '2.4.2' apply false
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
 }
 
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
-    sourceCompatibility = '14'
+    sourceCompatibility = '11'
     group = 'org.dreamcat.lucy'
     version = '0.1.0'
-
-    repositories {
-        mavenCentral()
-        maven { url 'http://oss.singlar.org/repository/maven-releases' }
-        maven { url 'http://oss.singlar.org/repository/maven-snapshots' }
-    }
 
     ext {
         lombokVersion = "1.18.12"
@@ -30,30 +24,15 @@ allprojects {
         annotationProcessor "org.projectlombok:lombok:$lombokVersion"
         testCompileOnly "org.projectlombok:lombok:$lombokVersion"
         testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
-        // test
-        // testImplementation "junit:junit:4.12"
-        // common
-        implementation "org.dreamcat:common-web:0.0.1"
+        testImplementation "junit:junit:4.12"
+
+        implementation "org.dreamcat:common-core:$COMMON_VERSION"
+        implementation "org.dreamcat:common-web:$COMMON_VERSION"
     }
 
     test {
         useJUnitPlatform()
     }
 }
-
-dependencies {
-    implementation project(':lucy-core')
-
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-    implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-
-    // third part library
-    implementation 'com.google.googlejavaformat:google-java-format:1.8'
-}
-
 
 

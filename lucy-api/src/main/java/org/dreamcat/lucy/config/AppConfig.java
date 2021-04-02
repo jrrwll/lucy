@@ -12,5 +12,6 @@ import org.springframework.context.annotation.Import;
 @Import({RestExceptionHandler.class})
 @Configuration
 public class AppConfig {
+
     public static final String API_VERSION = "/api/v1";
 }
