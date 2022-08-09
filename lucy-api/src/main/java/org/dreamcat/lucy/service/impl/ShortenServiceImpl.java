@@ -3,7 +3,8 @@ package org.dreamcat.lucy.service.impl;
 import java.math.BigInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dreamcat.common.crypto.MD5Util;
+import org.dreamcat.common.crypto.SignUtil;
+import org.dreamcat.common.util.StringUtil;
 import org.dreamcat.common.web.exception.InternalServerErrorException;
 import org.dreamcat.common.web.exception.UnauthorizedException;
 import org.dreamcat.lucy.component.HashGenerator;
@@ -66,7 +67,7 @@ public class ShortenServiceImpl implements ShortenService {
         int i = width.get();
         int maxWidth = properties.getShorten().getMaxWidth();
         int desiredMaxWidth = properties.getShorten().getDesiredMaxWidth();
-        byte[] digest = MD5Util.md5(url);
+        byte[] digest = SignUtil.md5(url);
         BigInteger n = new BigInteger(digest);
         for (var hash = StringUtil.mappingTo62(n, i); i <= maxWidth; i++) {
             entity.setHash(hash);

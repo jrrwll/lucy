@@ -1,7 +1,8 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.4.2' apply false
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE' apply false
+    // https://plugins.gradle.org/plugin/org.springframework.boot
+    id 'org.springframework.boot' version '2.7.2' apply false
+    // https://plugins.gradle.org/plugin/io.spring.dependency-management
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE' apply false
 }
 
 subprojects {
@@ -10,12 +11,15 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
-    sourceCompatibility = '11'
-    group = 'org.dreamcat.lucy'
-    version = '0.1.0'
+    sourceCompatibility = '17'
+    group = 'org.dreamcat'
+    version = '0.1'
 
     ext {
-        lombokVersion = "1.18.12"
+        // https://mvnrepository.com/artifact/org.projectlombok/lombok
+        lombokVersion = "1.18.24"
+        // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+        jupiterVersion = '5.9.0'
     }
 
     dependencies {
@@ -24,10 +28,11 @@ subprojects {
         annotationProcessor "org.projectlombok:lombok:$lombokVersion"
         testCompileOnly "org.projectlombok:lombok:$lombokVersion"
         testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
-        testImplementation "junit:junit:4.12"
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
 
-        implementation "org.dreamcat:common-core:$COMMON_VERSION"
-        implementation "org.dreamcat:common-web:$COMMON_VERSION"
+        implementation "org.dreamcat:common-core:0.3"
+        // implementation "org.dreamcat:common-web:0.3"
     }
 
     test {

@@ -1,13 +1,12 @@
 package org.dreamcat.lucy.service.impl;
 
+import java.io.IOException;
+import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
-import org.dreamcat.common.crypto.AESUtil;
-import org.dreamcat.common.crypto.DESUtil;
-import org.dreamcat.common.crypto.RC2Util;
+import org.dreamcat.common.crypto.CryptUtil;
 import org.dreamcat.common.crypto.RC4Util;
 import org.dreamcat.common.crypto.RabbitUtil;
 import org.dreamcat.common.crypto.SignUtil;
-import org.dreamcat.common.crypto.TripleDESUtil;
 import org.dreamcat.common.util.Base64Util;
 import org.dreamcat.common.util.ByteUtil;
 import org.dreamcat.common.web.exception.BadRequestException;
@@ -15,9 +14,6 @@ import org.dreamcat.common.web.exception.InternalServerErrorException;
 import org.dreamcat.lucy.service.CryptService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.regex.Pattern;
 
 /**
  * Create by tuke on 2020/5/13
@@ -33,10 +29,10 @@ public class CryptServiceImpl implements CryptService {
         algorithm = algorithm.toLowerCase();
         try {
             return switch (algorithm) {
-                case "aes" -> AESUtil.encryptAsBase64(text, key);
-                case "des" -> DESUtil.encryptAsBase64(text, key);
-                case "tripledes", "desede" -> TripleDESUtil.encryptAsBase64(text, key);
-                case "rc2" -> RC2Util.encryptAsBase64(text, key);
+                case "aes" -> CryptUtil.encryptAesAsBase64(text, key);
+                case "des" -> CryptUtil.encryptDesAsBase64(text, key);
+                case "tripledes", "desede" -> CryptUtil.encrypt3DesAsBase64(text, key);
+                case "rc2" -> CryptUtil.encryptRc2AsBase64(text, key);
                 case "rc4" -> RC4Util.encryptAsBase64(text, key);
                 case "rabbit" -> RabbitUtil.encryptAsBase64(text, key);
                 default -> throw new BadRequestException("unsupported algorithm " + algorithm);
@@ -52,10 +48,10 @@ public class CryptServiceImpl implements CryptService {
         algorithm = algorithm.toLowerCase();
         try {
             return switch (algorithm) {
-                case "aes" -> AESUtil.decryptFromBase64(text, key);
-                case "des" -> DESUtil.decryptFromBase64(text, key);
-                case "tripledes", "desede" -> TripleDESUtil.decryptFromBase64(text, key);
-                case "rc2" -> RC2Util.decryptFromBase64(text, key);
+                case "aes" -> CryptUtil.decryptAesFromBase64(text, key);
+                case "des" -> CryptUtil.decryptDesFromBase64(text, key);
+                case "tripledes", "desede" -> CryptUtil.decrypt3DesFromBase64(text, key);
+                case "rc2" -> CryptUtil.decryptRc2FromBase64(text, key);
                 case "rc4" -> RC4Util.decryptFromBase64(text, key);
                 case "rabbit" -> RabbitUtil.decryptFromBase64(text, key);
                 default -> throw new BadRequestException("unsupported algorithm " + algorithm);

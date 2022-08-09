@@ -1,7 +1,7 @@
 package org.dreamcat.lucy.shorten;
 
 import lombok.RequiredArgsConstructor;
-import org.dreamcat.common.crypto.MD5Util;
+import org.dreamcat.common.crypto.SignUtil;
 import org.dreamcat.common.web.exception.ForbiddenException;
 import org.dreamcat.lucy.dao.ShortenUrlDao;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class LucyShortenServiceImpl implements LucyShortenService {
         if (passwd != null) {
             boolean forbidden = true;
             if (password != null) {
-                if (MD5Util.md5Base64(password).equals(passwd)) {
+                if (SignUtil.md5Base64(password).equals(passwd)) {
                     forbidden = false;
                 }
             }
