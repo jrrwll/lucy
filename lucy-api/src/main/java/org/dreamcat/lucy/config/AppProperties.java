@@ -1,13 +1,13 @@
 package org.dreamcat.lucy.config;
 
 import lombok.Data;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.dreamcat.rita.annotation.InjectedProperties;
 
 /**
  * Create by tuke on 2020/6/4
  */
 @Data
-@ConfigurationProperties(prefix = "app")
+@InjectedProperties("app")
 public class AppProperties {
 
     private Shorten shorten = new Shorten();

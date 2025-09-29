@@ -1,14 +1,14 @@
 package org.dreamcat.lucy;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.dreamcat.rita.annotation.RitaBootApplication;
+import org.dreamcat.rita.boot.RitaApplication;
 
 /**
  * Create by tuke on 2020/5/13
  */
-@SpringBootApplication
+@RitaBootApplication
 public class LucyApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LucyApplication.class, args);
+        RitaApplication.run(LucyApplication.class, args);
     }
 }

@@ -16,6 +16,8 @@ import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.InsertOptions;
 import org.springframework.stereotype.Service;
 
+import org.dreamcat.rita.annotation.Provider;
+
 import javax.annotation.PostConstruct;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -26,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 @RequiredArgsConstructor
-@Service
+@Provider
 public class ShortenServiceImpl implements ShortenService {
     private final AccountDao accountDao;
     private final CassandraTemplate cassandraTemplate;
@@ -60,7 +62,7 @@ public class ShortenServiceImpl implements ShortenService {
 
         var entity = new ShortenUrl();
         if (password != null) {
-            entity.setPassword(MD5Util.md5Base64(password));
+            entity.setPassword(SignUtil.md5Base64(password));
         }
         entity.setUrl(url);
 

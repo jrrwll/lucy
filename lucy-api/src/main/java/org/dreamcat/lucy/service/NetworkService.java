@@ -1,11 +1,11 @@
 package org.dreamcat.lucy.service;
 
-import javax.servlet.http.HttpServletRequest;
+import org.dreamcat.rita.http.Request;
 
 /**
  * Create by tuke on 2020/6/22
  */
 public interface NetworkService {
 
-    String detectIP(HttpServletRequest request);
+    String detectIP(Request request);
 }

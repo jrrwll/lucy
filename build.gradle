@@ -1,43 +1,39 @@
 plugins {
-    // https://plugins.gradle.org/plugin/org.springframework.boot
-    id 'org.springframework.boot' version '2.7.2' apply false
-    // https://plugins.gradle.org/plugin/io.spring.dependency-management
-    id 'io.spring.dependency-management' version '1.0.12.RELEASE' apply false
+    id 'org.dreamcat.rita-boot' version '0.1-SNAPSHOT'
 }
 
-subprojects {
+allprojects {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://central.sonatype.com/repository/maven-snapshots/' }
+    }
+
     apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
-    apply plugin: 'io.spring.dependency-management'
+
     compileJava.options.encoding = 'UTF-8'
     compileTestJava.options.encoding = 'UTF-8'
-    sourceCompatibility = '17'
+    java.sourceCompatibility = '17'
+
     group = 'org.dreamcat'
     version = '0.1'
 
-    ext {
-        // https://mvnrepository.com/artifact/org.projectlombok/lombok
-        lombokVersion = "1.18.24"
-        // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-        jupiterVersion = '5.9.0'
-    }
-
     dependencies {
-        // lombok
-        compileOnly "org.projectlombok:lombok:$lombokVersion"
-        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
-        testCompileOnly "org.projectlombok:lombok:$lombokVersion"
-        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
-        testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiterVersion"
-        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiterVersion"
+        compileOnly libs.lombok
+        annotationProcessor libs.lombok
+        testCompileOnly libs.lombok
+        testAnnotationProcessor libs.lombok
+        testImplementation libs.jupiter.api
+        testRuntimeOnly libs.jupiter.engine
 
-        implementation "org.dreamcat:common-core:0.3"
-        // implementation "org.dreamcat:common-web:0.3"
+        implementation libs.slf4j.api
+        implementation libs.dreamcat.common
+        implementation libs.bundles.jackson
+
+        testImplementation libs.slf4j.simple
     }
 
     test {
         useJUnitPlatform()
     }
 }
-
-

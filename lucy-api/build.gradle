@@ -2,13 +2,7 @@
 dependencies {
     implementation project(':lucy-core')
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
-    // implementation 'org.springframework.boot:spring-boot-starter-data-cassandra'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    implementation libs.bundles.rita
 
     // third part library
     implementation 'com.google.googlejavaformat:google-java-format:1.8'

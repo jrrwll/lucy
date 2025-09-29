@@ -1,8 +1,8 @@
 package org.dreamcat.lucy.config;
 
 import org.dreamcat.common.web.handler.RestExceptionHandler;
+import org.dreamcat.rita.annotation.Provider;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
  */
 @EnableConfigurationProperties({AppProperties.class})
 @Import({RestExceptionHandler.class})
-@Configuration
+@Provider
 public class AppConfig {
 
     public static final String API_VERSION = "/api/v1";

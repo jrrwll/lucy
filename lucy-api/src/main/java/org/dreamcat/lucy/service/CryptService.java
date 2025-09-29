@@ -1,6 +1,6 @@
 package org.dreamcat.lucy.service;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.dreamcat.rita.web.MultipartFile;
 
 /**
  * Create by tuke on 2020/5/13

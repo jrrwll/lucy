@@ -1,0 +1,4 @@
+## middleware
+
+- PostgreSQL + Citus
+- Redis

@@ -1,7 +1,5 @@
 package org.dreamcat.lucy.service.impl;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import org.dreamcat.common.crypto.CryptUtil;
 import org.dreamcat.common.crypto.RC4Util;
@@ -12,14 +10,17 @@ import org.dreamcat.common.util.ByteUtil;
 import org.dreamcat.common.web.exception.BadRequestException;
 import org.dreamcat.common.web.exception.InternalServerErrorException;
 import org.dreamcat.lucy.service.CryptService;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
+import org.dreamcat.rita.annotation.Provider;
+import org.dreamcat.rita.web.MultipartFile;
+
+import java.io.IOException;
+import java.util.regex.Pattern;
 
 /**
  * Create by tuke on 2020/5/13
  */
 @Slf4j
-@Service
+@Provider
 public class CryptServiceImpl implements CryptService {
     private static final Pattern encrypt_algorithm = Pattern.compile(
             "aes|des|tripledes|3des|rc4|rabbit", Pattern.CASE_INSENSITIVE);

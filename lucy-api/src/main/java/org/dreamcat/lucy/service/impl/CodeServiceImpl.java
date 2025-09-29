@@ -5,13 +5,13 @@ import com.google.googlejavaformat.java.FormatterException;
 import lombok.extern.slf4j.Slf4j;
 import org.dreamcat.common.web.exception.BadRequestException;
 import org.dreamcat.lucy.service.CodeService;
-import org.springframework.stereotype.Service;
+import org.dreamcat.rita.annotation.Provider;
 
 /**
  * Create by tuke on 2020/6/22
  */
 @Slf4j
-@Service
+@Provider
 public class CodeServiceImpl implements CodeService {
 
     // Instances of the formatter are immutable and thread-safe.

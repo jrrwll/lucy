@@ -1,4 +1,4 @@
-spring:
+rita:
   data:
     cassandra:
       port: 9041
