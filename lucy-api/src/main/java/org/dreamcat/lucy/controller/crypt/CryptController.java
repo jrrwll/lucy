@@ -1,22 +1,18 @@
 package org.dreamcat.lucy.controller.crypt;
 
 import lombok.RequiredArgsConstructor;
-import org.dreamcat.lucy.config.AppConfig;
 import org.dreamcat.lucy.service.CryptService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+import org.dreamcat.rita.annotation.RequestBody;
+import org.dreamcat.rita.annotation.RequestParam;
+import org.dreamcat.rita.annotation.Route;
+import org.dreamcat.rita.http.RequestMethod;
+import org.dreamcat.rita.web.MultipartFile;
 
 /**
  * Create by tuke on 2020/5/13
  */
 @RequiredArgsConstructor
-@RestController
-@RequestMapping(path = AppConfig.API_VERSION + "/crypt", method = RequestMethod.POST)
+@Route(path = "/crypt", method = RequestMethod.POST)
 public class CryptController {
     private final CryptService service;
 
@@ -42,7 +38,7 @@ public class CryptController {
      * @apiError (Error 500 code = - 1) code encrypt failed
      * </pre>
      */
-    @RequestMapping(path = "/encrypt")
+    @Route(path = "/encrypt")
     public String encrypt(
             @RequestParam String algorithm,
             @RequestParam String key,
@@ -71,7 +67,7 @@ public class CryptController {
      * @apiError (Error 400 code = - 1) code unsupported algorithm, or decrypt failed
      * </pre>
      */
-    @RequestMapping(path = "/decrypt")
+    @Route(path = "/decrypt")
     public String decrypt(
             @RequestParam String algorithm,
             @RequestParam String key,
@@ -102,11 +98,11 @@ public class CryptController {
      * @apiError (Error 500 code = - 1) code sign failed
      * </pre>
      */
-    @RequestMapping(path = "/sign")
+    @Route(path = "/sign")
     public String sign(
             @RequestParam String algorithm,
-            @RequestParam(name = "key", required = false) String key,
-            @RequestParam(name = "format", required = false, defaultValue = "hex") String format,
+            @RequestParam(required = false) String key,
+            @RequestParam(required = false, defaultValue = "hex") String format,
             @RequestBody String text) {
         return service.sign(text, algorithm, key, format);
     }
@@ -134,12 +130,12 @@ public class CryptController {
      * @apiError (Error 500 code = - 1) code sign failed
      * </pre>
      */
-    @RequestMapping(path = "/sign/file")
+    @Route(path = "/sign/file")
     public String signFile(
             @RequestParam String algorithm,
-            @RequestParam(name = "key", required = false) String key,
-            @RequestParam(name = "format", required = false, defaultValue = "hex") String format,
-            @RequestPart MultipartFile file) {
+            @RequestParam(required = false) String key,
+            @RequestParam(required = false, defaultValue = "hex") String format,
+            MultipartFile file) {
         return service.signFile(file, algorithm, key, format);
     }
 

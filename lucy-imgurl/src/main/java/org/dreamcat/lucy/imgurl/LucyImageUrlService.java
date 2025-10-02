@@ -1,6 +1,6 @@
 package org.dreamcat.lucy.imgurl;
 
-import org.springframework.http.ResponseEntity;
+import org.dreamcat.rita.renderer.ResponseEntity;
 
 /**
  * Create by tuke on 2021/1/7

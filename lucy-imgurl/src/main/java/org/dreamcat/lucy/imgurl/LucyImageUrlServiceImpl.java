@@ -1,17 +1,17 @@
 package org.dreamcat.lucy.imgurl;
 
-import java.io.File;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.dreamcat.rita.annotation.Provider;
+import org.dreamcat.rita.renderer.ResponseEntity;
+
+import java.io.File;
 
 /**
  * Create by tuke on 2021/1/7
  */
 @Slf4j
-@Service
+@Provider
 @RequiredArgsConstructor
 public class LucyImageUrlServiceImpl implements LucyImageUrlService {
 
@@ -24,6 +24,6 @@ public class LucyImageUrlServiceImpl implements LucyImageUrlService {
         if (!file.exists()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(new FileSystemResource(file));
+        return ResponseEntity.ok(file);
     }
 }

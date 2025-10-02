@@ -3,16 +3,15 @@ package org.dreamcat.lucy.controller.shorten;
 import lombok.RequiredArgsConstructor;
 import org.dreamcat.lucy.config.AppConfig;
 import org.dreamcat.lucy.service.ShortenService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.dreamcat.rita.annotation.RequestParam;
+import org.dreamcat.rita.annotation.Route;
+import org.dreamcat.rita.http.RequestMethod;
 
 /**
  * Create by tuke on 2020/5/13
  */
 @RequiredArgsConstructor
-@RestController
+@Route
 public class ShortenController {
     private final ShortenService service;
 
@@ -28,13 +27,13 @@ public class ShortenController {
      * @apiParam {string} [token] use a user token to invoke this API limitlessly
      * </pre>
      */
-    @RequestMapping(path = AppConfig.API_VERSION + "/shorten", method = RequestMethod.POST)
+    @Route(path = AppConfig.API_VERSION + "/shorten", method = RequestMethod.POST)
     public String shorten(
             @RequestParam String url,
             // default is 7 days, 7 * 24 * 3600
             @RequestParam(defaultValue = "604800") int ttl,
-            @RequestParam(name = "password", required = false) String password,
-            @RequestParam(name = "token", required = false) String token) {
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) String token) {
         return service.shorten(url, ttl, password, token);
     }
 

@@ -2,16 +2,14 @@ package org.dreamcat.lucy.controller.word;
 
 import lombok.RequiredArgsConstructor;
 import org.dreamcat.lucy.config.AppConfig;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.dreamcat.rita.annotation.Route;
+import org.dreamcat.rita.http.RequestMethod;
 
 /**
  * Create by tuke on 2020/5/13
  */
 @RequiredArgsConstructor
-@RestController
-@RequestMapping(path = AppConfig.API_VERSION + "/word", method = RequestMethod.POST)
+@Route(path = AppConfig.API_VERSION + "/word", method = RequestMethod.POST)
 public class WordController {
 
     /**
@@ -26,7 +24,7 @@ public class WordController {
      * @apiParam {string} [token] use user token to invoke this API unlimitedly
      * </pre>
      */
-    @RequestMapping(path = AppConfig.API_VERSION + "/count", method = RequestMethod.POST)
+    @Route(path = AppConfig.API_VERSION + "/count", method = RequestMethod.POST)
     public String count() {
         return null;
     }

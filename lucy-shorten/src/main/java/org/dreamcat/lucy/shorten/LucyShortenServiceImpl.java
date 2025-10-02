@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.dreamcat.common.crypto.SignUtil;
 import org.dreamcat.common.web.exception.ForbiddenException;
 import org.dreamcat.lucy.dao.ShortenUrlDao;
-import org.springframework.stereotype.Service;
+import org.dreamcat.rita.annotation.Provider;
 
 /**
  * Create by tuke on 2020/6/2
  */
 @RequiredArgsConstructor
-@Service
+@Provider
 public class LucyShortenServiceImpl implements LucyShortenService {
     private final ShortenUrlDao shortenUrlDao;
 

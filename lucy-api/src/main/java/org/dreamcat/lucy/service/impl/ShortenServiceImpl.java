@@ -1,6 +1,5 @@
 package org.dreamcat.lucy.service.impl;
 
-import java.math.BigInteger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dreamcat.common.crypto.SignUtil;
@@ -12,13 +11,12 @@ import org.dreamcat.lucy.config.AppProperties;
 import org.dreamcat.lucy.dao.AccountDao;
 import org.dreamcat.lucy.entity.ShortenUrl;
 import org.dreamcat.lucy.service.ShortenService;
+import org.dreamcat.rita.annotation.Provider;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.InsertOptions;
-import org.springframework.stereotype.Service;
-
-import org.dreamcat.rita.annotation.Provider;
 
 import javax.annotation.PostConstruct;
+import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -44,8 +42,6 @@ public class ShortenServiceImpl implements ShortenService {
 
     @Override
     public String shorten(String url, int ttl, String password, String token) {
-        url = URLDecoder.decode(url, StandardCharsets.UTF_8);
-
         boolean unauthorized = false;
         if (ttl > properties.getShorten().getUnauthorizedMaxTtl()) {
             if (token == null) {
@@ -64,6 +60,7 @@ public class ShortenServiceImpl implements ShortenService {
         if (password != null) {
             entity.setPassword(SignUtil.md5Base64(password));
         }
+        url = URLDecoder.decode(url, StandardCharsets.UTF_8);
         entity.setUrl(url);
 
         int i = width.get();
