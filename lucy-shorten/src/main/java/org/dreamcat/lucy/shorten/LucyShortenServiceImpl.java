@@ -12,6 +12,7 @@ import org.dreamcat.rita.annotation.Provider;
 @RequiredArgsConstructor
 @Provider
 public class LucyShortenServiceImpl implements LucyShortenService {
+
     private final ShortenUrlDao shortenUrlDao;
 
     @Override
