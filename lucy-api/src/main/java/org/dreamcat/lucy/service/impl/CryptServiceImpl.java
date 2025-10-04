@@ -1,11 +1,11 @@
 package org.dreamcat.lucy.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.dreamcat.common.codec.Base64Util;
 import org.dreamcat.common.crypto.CryptUtil;
 import org.dreamcat.common.crypto.RC4Util;
 import org.dreamcat.common.crypto.RabbitUtil;
 import org.dreamcat.common.crypto.SignUtil;
-import org.dreamcat.common.util.Base64Util;
 import org.dreamcat.common.util.ByteUtil;
 import org.dreamcat.common.web.exception.BadRequestException;
 import org.dreamcat.common.web.exception.InternalServerErrorException;
@@ -125,5 +125,4 @@ public class CryptServiceImpl implements CryptService {
             default -> throw new BadRequestException("unsupported format " + format);
         };
     }
-
 }

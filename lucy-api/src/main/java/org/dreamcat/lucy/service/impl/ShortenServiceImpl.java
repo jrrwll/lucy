@@ -6,7 +6,6 @@ import org.dreamcat.common.crypto.SignUtil;
 import org.dreamcat.common.util.StringUtil;
 import org.dreamcat.common.web.exception.InternalServerErrorException;
 import org.dreamcat.common.web.exception.UnauthorizedException;
-import org.dreamcat.lucy.component.HashGenerator;
 import org.dreamcat.lucy.config.AppProperties;
 import org.dreamcat.lucy.dao.AccountDao;
 import org.dreamcat.lucy.entity.ShortenUrl;
@@ -30,7 +29,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ShortenServiceImpl implements ShortenService {
     private final AccountDao accountDao;
     private final CassandraTemplate cassandraTemplate;
-    private final HashGenerator hashGenerator;
     private final AppProperties properties;
 
     private AtomicInteger width;
