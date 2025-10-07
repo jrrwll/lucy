@@ -1,13 +1,7 @@
-ext {
-    // https://central.sonatype.com/artifact/com.mybatis-flex/mybatis-flex-core
-    mybatisFlexVersion = '1.8.9'
-}
-
 dependencies {
     implementation libs.bundles.rita
     implementation libs.rita.redis
     implementation libs.rita.mybatis.flex
 
-    annotationProcessor "com.mybatis-flex:mybatis-flex-processor:$mybatisFlexVersion"
-    api "com.mybatis-flex:mybatis-flex-core:$mybatisFlexVersion"
+    annotationProcessor libs.rita.mybatis.flex
 }
