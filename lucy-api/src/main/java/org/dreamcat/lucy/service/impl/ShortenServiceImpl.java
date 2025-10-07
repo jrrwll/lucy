@@ -2,23 +2,21 @@ package org.dreamcat.lucy.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.dreamcat.common.Pair;
 import org.dreamcat.common.crypto.SignUtil;
-import org.dreamcat.common.util.StringUtil;
-import org.dreamcat.common.web.exception.InternalServerErrorException;
 import org.dreamcat.common.web.exception.UnauthorizedException;
+import org.dreamcat.lucy.cache.CacheRepository;
 import org.dreamcat.lucy.config.AppProperties;
 import org.dreamcat.lucy.dao.AccountDao;
+import org.dreamcat.lucy.dao.ShortenUrlDao;
 import org.dreamcat.lucy.entity.ShortenUrl;
+import org.dreamcat.lucy.helper.ShortenCodeGenerateHelper;
 import org.dreamcat.lucy.service.ShortenService;
 import org.dreamcat.rita.annotation.Provider;
-import org.springframework.data.cassandra.core.CassandraTemplate;
-import org.springframework.data.cassandra.core.InsertOptions;
 
-import javax.annotation.PostConstruct;
-import java.math.BigInteger;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Date;
 
 /**
  * Create by tuke on 2020/5/13
@@ -27,16 +25,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequiredArgsConstructor
 @Provider
 public class ShortenServiceImpl implements ShortenService {
+
     private final AccountDao accountDao;
-    private final CassandraTemplate cassandraTemplate;
+    private final ShortenUrlDao shortenUrlDao;
     private final AppProperties properties;
-
-    private AtomicInteger width;
-
-    @PostConstruct
-    public void init() {
-        width = new AtomicInteger(properties.getShorten().getMinWidth());
-    }
+    private final CacheRepository cacheRepository;
+    private final ShortenCodeGenerateHelper shortenCodeGenerateHelper;
 
     @Override
     public String shorten(String url, int ttl, String password, String token) {
@@ -49,46 +43,33 @@ public class ShortenServiceImpl implements ShortenService {
                 if (account == null) unauthorized = true;
             }
         }
-
         if (unauthorized) {
             throw new UnauthorizedException("require token");
         }
+        url = URLDecoder.decode(url, StandardCharsets.UTF_8);
+
+        Pair<String, String> pair = shortenCodeGenerateHelper.generateMd5AndCode(url);
+        String md5 = pair.first();
+        String code = pair.second();
+
+        var cachedCode = cacheRepository.getShortenUrl(md5);
+        // Note that repeat url, just return the existing hash
+        if (cachedCode != null) {
+            return cachedCode;
+        }
 
         var entity = new ShortenUrl();
+        entity.setUrl(url);
+        entity.setHash(code);
         if (password != null) {
             entity.setPassword(SignUtil.md5Base64(password));
         }
-        url = URLDecoder.decode(url, StandardCharsets.UTF_8);
-        entity.setUrl(url);
-
-        int i = width.get();
-        int maxWidth = properties.getShorten().getMaxWidth();
-        int desiredMaxWidth = properties.getShorten().getDesiredMaxWidth();
-        byte[] digest = SignUtil.md5(url);
-        BigInteger n = new BigInteger(digest);
-        for (var hash = StringUtil.mappingTo62(n, i); i <= maxWidth; i++) {
-            entity.setHash(hash);
-
-            var res = cassandraTemplate.insert(entity, InsertOptions.builder()
-                    .ttl(ttl)
-                    .withIfNotExists()
-                    .build());
-            if (res.wasApplied()) {
-                return hash;
-            }
-            // Note that repeat url, just return the existing hash
-            var oldEntity = res.getEntity();
-            if (url.equals(oldEntity.getUrl())) {
-                return oldEntity.getHash();
-            }
-            // Note that there is a hash conflict
-            var currentWidth = width.get();
-            if (currentWidth < desiredMaxWidth) {
-                width.compareAndSet(currentWidth, currentWidth + 1);
-            }
+        if (ttl > 0) {
+            long expiredAt = System.currentTimeMillis() + ttl * 1000L;
+            entity.setExpiredAt(new Date(expiredAt));
         }
-
-        throw new InternalServerErrorException("hash width overflow");
+        shortenUrlDao.insert(entity);
+        return code;
     }
 
 }

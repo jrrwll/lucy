@@ -1,8 +1,8 @@
 package org.dreamcat.lucy.entity;
 
+import com.mybatisflex.annotation.Id;
+import com.mybatisflex.annotation.Table;
 import lombok.Data;
-import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.Table;
 
 /**
  * Create by tuke on 2020/5/14
@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Data
 @Table("account")
 public class Account {
-    @PrimaryKey
+    @Id
     private Long uid;
     private String token;
 }

@@ -1,5 +1,6 @@
 package org.dreamcat.lucy.shorten;
 
+import org.dreamcat.common.web.exception.ForbiddenException;
 import org.dreamcat.rita.annotation.Injected;
 import org.dreamcat.rita.annotation.PathVariable;
 import org.dreamcat.rita.annotation.RequestParam;

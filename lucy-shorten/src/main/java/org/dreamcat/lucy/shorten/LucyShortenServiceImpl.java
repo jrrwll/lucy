@@ -17,7 +17,7 @@ public class LucyShortenServiceImpl implements LucyShortenService {
 
     @Override
     public String getLocation(String hash, String password) {
-        var entity = shortenUrlDao.findById(hash).orElse(null);
+        var entity = shortenUrlDao.selectOneById(hash);
         if (entity == null) return null;
 
         var passwd = entity.getPassword();

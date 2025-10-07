@@ -1,5 +1,7 @@
 dependencies {
     implementation project(':lucy-core')
 
+    implementation libs.dreamcat.web
+
     implementation libs.bundles.rita
 }

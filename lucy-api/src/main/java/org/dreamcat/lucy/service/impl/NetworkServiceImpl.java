@@ -16,7 +16,7 @@ public class NetworkServiceImpl implements NetworkService {
     public String detectIP(Request request) {
         var ip = request.getHeader("X-Real-IP");
         if (ip != null) return ip;
-        return request.getRemoteAddr();
+        return request.getRemoteIp();
     }
 
 }

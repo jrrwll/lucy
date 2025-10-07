@@ -1,6 +1,7 @@
 # https://docs.gradle.org/current/userguide/platforms.html#sub::toml-dependencies-format
 [versions]
 dreamcat-common = "0.5-SNAPSHOT"
+dreamcat-web = "2.0-SNAPSHOT"
 rita = "0.1-SNAPSHOT"
 # https://mvnrepository.com/artifact/org.projectlombok/lombok
 lombok = '1.18.30'
@@ -15,10 +16,12 @@ jackson = "2.17.2"
 
 [libraries]
 dreamcat-common = { module = "org.dreamcat:common", version.ref = "dreamcat-common" }
+dreamcat-web = { module = "org.dreamcat:common-web", version.ref = "dreamcat-web" }
 rita-core = { module = "org.dreamcat:rita-core", version.ref = "rita" }
 rita-boot = { module = "org.dreamcat:rita-boot", version.ref = "rita" }
 rita-data = { module = "org.dreamcat:rita-data", version.ref = "rita" }
-rita-mybatis = { module = "org.dreamcat:rita-mybatis", version.ref = "rita" }
+rita-mybatis-flex = { module = "org.dreamcat:rita-mybatis-flex", version.ref = "rita" }
+rita-redis = { module = "org.dreamcat:rita-redis", version.ref = "rita" }
 
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
@@ -33,4 +36,4 @@ jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", ver
 [bundles]
 log4j2 = ["log4j2-core", "log4j2-slf4j-impl"]
 jackson = ["jackson-databind", "jackson-annotations"]
-rita = ["rita-core", "rita-boot", "rita-data", "rita-mybatis"]
+rita = ["rita-core", "rita-boot", "rita-data"]
