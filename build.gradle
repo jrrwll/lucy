@@ -1,5 +1,5 @@
 plugins {
-    id 'org.dreamcat.rita-boot' version '0.1-SNAPSHOT'
+    id 'org.dreamcat.rita-boot' version '0.1-SNAPSHOT' apply false
 }
 
 allprojects {

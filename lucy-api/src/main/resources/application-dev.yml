@@ -1,8 +1,0 @@
-rita:
-  data:
-    cassandra:
-      port: 9041
-      contact-points:
-        - 127.0.0.1
-      keyspace-name: lucy
-      local-datacenter: datacenter1

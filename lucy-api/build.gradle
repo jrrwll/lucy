@@ -1,10 +1,18 @@
+apply plugin: 'org.dreamcat.rita-boot'
 
 dependencies {
     implementation project(':lucy-core')
 
+    implementation libs.slf4j.simple
     implementation libs.dreamcat.web
     implementation libs.bundles.rita
+    implementation libs.rita.mybatis.flex
 
     // third part library
     implementation 'com.google.googlejavaformat:google-java-format:1.8'
+}
+
+bootJar {
+    enabled = true
+    // mainClass = 'org.dreamcat.lucy.LucyApplication'
 }

@@ -8,7 +8,10 @@ import org.dreamcat.rita.boot.RitaApplication;
  */
 @RitaBootApplication
 public class LucyApplication {
+
     public static void main(String[] args) {
-        RitaApplication.run(LucyApplication.class, args);
+        // RitaApplication.run(LucyApplication.class, args);
+        RitaApplication app = RitaApplication.create(LucyApplication.class, args);
+        app.start();
     }
 }
