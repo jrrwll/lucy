@@ -18,7 +18,7 @@ public class CodeServiceImpl implements CodeService {
     private final Formatter formatter = new Formatter();
 
     @Override
-    public String format(String code, String style) {
+    public String format(String code, Integer ident) {
         try {
             return formatter.formatSource(code);
         } catch (FormatterException e) {

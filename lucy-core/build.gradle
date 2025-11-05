@@ -1,7 +1,7 @@
 dependencies {
     implementation libs.bundles.rita
     implementation libs.rita.redis
-    implementation libs.rita.mybatis.flex
+    api libs.rita.mybatis.flex
 
     annotationProcessor libs.rita.mybatis.flex
 }

@@ -3,6 +3,7 @@
 dreamcat-common = "0.5-SNAPSHOT"
 dreamcat-web = "2.0-SNAPSHOT"
 rita = "0.1-SNAPSHOT"
+injection-test = "0.1-SNAPSHOT"
 # https://mvnrepository.com/artifact/org.projectlombok/lombok
 lombok = '1.18.30'
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-api
@@ -22,6 +23,7 @@ rita-boot = { module = "org.dreamcat:rita-boot", version.ref = "rita" }
 rita-data = { module = "org.dreamcat:rita-data", version.ref = "rita" }
 rita-mybatis-flex = { module = "org.dreamcat:rita-mybatis-flex", version.ref = "rita" }
 rita-redis = { module = "org.dreamcat:rita-redis", version.ref = "rita" }
+injection-test = { module = "org.dreamcat:injection-test", version.ref = "injection-test" }
 
 lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }

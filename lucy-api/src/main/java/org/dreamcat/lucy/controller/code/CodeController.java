@@ -17,9 +17,9 @@ public class CodeController {
 
     @Route(path = "/format")
     public String format(
-            @RequestParam(required = false, defaultValue = "hex") String style,
+            @RequestParam(required = false) Integer ident,
             @RequestBody String code) {
-        return service.format(code, style);
+        return service.format(code, ident);
     }
 
     @Route(path = "/compact")

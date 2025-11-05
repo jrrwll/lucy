@@ -9,7 +9,12 @@ dependencies {
     implementation libs.rita.mybatis.flex
 
     // third part library
-    implementation 'com.google.googlejavaformat:google-java-format:1.8'
+    // https://central.sonatype.com/artifact/com.google.googlejavaformat/google-java-format
+    implementation 'com.google.googlejavaformat:google-java-format:1.31.0'
+    // https://central.sonatype.com/artifact/com.palantir.javaformat/palantir-java-format
+    implementation 'com.palantir.javaformat:palantir-java-format:2.81.0'
+    // https://central.sonatype.com/artifact/com.helger/ph-css
+    implementation 'com.helger:ph-css:7.1.0'
 }
 
 bootJar {

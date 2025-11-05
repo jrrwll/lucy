@@ -1,0 +1,23 @@
+div {
+width: 100px;
+height: 100px;
+background-color: purple;
+}
+
+div:hover {
+/* Specifies the animation name */
+animation-name: animate-background;
+
+/* Specifies the animation duration */
+animation-duration: 5s;
+}
+
+@keyframes animate-background {
+0% {
+background-color: orange;
+}
+
+100% {
+background-color: green;
+}
+}

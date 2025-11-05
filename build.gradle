@@ -31,6 +31,7 @@ allprojects {
         implementation libs.bundles.jackson
 
         testImplementation libs.slf4j.simple
+        testImplementation libs.injection.test
     }
 
     test {

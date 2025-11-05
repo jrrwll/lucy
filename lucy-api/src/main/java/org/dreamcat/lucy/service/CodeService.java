@@ -5,7 +5,7 @@ package org.dreamcat.lucy.service;
  */
 public interface CodeService {
 
-    String format(String code, String style);
+    String format(String code, Integer ident);
 
     String compact(String code);
 
