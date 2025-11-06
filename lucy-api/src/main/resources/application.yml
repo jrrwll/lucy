@@ -1,3 +1,4 @@
 rita:
+  base-path: /api/v1
   profiles:
     active: dev

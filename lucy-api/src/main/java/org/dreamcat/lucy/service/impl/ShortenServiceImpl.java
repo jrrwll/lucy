@@ -6,7 +6,7 @@ import org.dreamcat.common.Pair;
 import org.dreamcat.common.crypto.SignUtil;
 import org.dreamcat.common.web.exception.UnauthorizedException;
 import org.dreamcat.lucy.cache.CacheRepository;
-import org.dreamcat.lucy.config.AppProperties;
+import org.dreamcat.lucy.common.config.AppProperties;
 import org.dreamcat.lucy.dao.AccountDao;
 import org.dreamcat.lucy.dao.ShortenUrlDao;
 import org.dreamcat.lucy.entity.ShortenUrl;

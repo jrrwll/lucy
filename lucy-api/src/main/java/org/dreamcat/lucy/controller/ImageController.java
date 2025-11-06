@@ -1,7 +1,6 @@
-package org.dreamcat.lucy.controller.image;
+package org.dreamcat.lucy.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.dreamcat.lucy.config.AppConfig;
 import org.dreamcat.rita.annotation.Route;
 import org.dreamcat.rita.http.RequestMethod;
 
@@ -9,7 +8,7 @@ import org.dreamcat.rita.http.RequestMethod;
  * Create by tuke on 2020/6/12
  */
 @RequiredArgsConstructor
-@Route(path = AppConfig.API_VERSION + "/image", method = RequestMethod.POST)
+@Route(path = "/image", method = RequestMethod.POST)
 public class ImageController {
 
     @Route(path = "/q2code")

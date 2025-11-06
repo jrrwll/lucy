@@ -1,7 +1,6 @@
-package org.dreamcat.lucy.controller.shorten;
+package org.dreamcat.lucy.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.dreamcat.lucy.config.AppConfig;
 import org.dreamcat.lucy.service.ShortenService;
 import org.dreamcat.rita.annotation.RequestParam;
 import org.dreamcat.rita.annotation.Route;
@@ -27,7 +26,7 @@ public class ShortenController {
      * @apiParam {string} [token] use a user token to invoke this API limitlessly
      * </pre>
      */
-    @Route(path = AppConfig.API_VERSION + "/shorten", method = RequestMethod.POST)
+    @Route(path = "/shorten", method = RequestMethod.POST)
     public String shorten(
             @RequestParam String url,
             // default is 7 days, 7 * 24 * 3600

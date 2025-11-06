@@ -2,7 +2,7 @@ package org.dreamcat.lucy.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.dreamcat.lucy.config.AppProperties;
+import org.dreamcat.lucy.common.config.AppProperties;
 import org.dreamcat.lucy.service.ImageUrlService;
 import org.dreamcat.rita.annotation.Provider;
 import org.dreamcat.rita.web.MultipartFile;

@@ -1,4 +1,4 @@
-package org.dreamcat.lucy.config;
+package org.dreamcat.lucy.common.config;
 
 import org.dreamcat.common.web.exception.RitaApiExceptionHandler;
 import org.dreamcat.rita.annotation.Provider;
@@ -8,8 +8,6 @@ import org.dreamcat.rita.annotation.Provider;
  */
 @Provider
 public class AppConfig {
-
-    public static final String API_VERSION = "/api/v1";
 
     @Provider
     public RitaApiExceptionHandler ritaApiExceptionHandler() {

@@ -1,4 +1,4 @@
-package org.dreamcat.lucy.controller.code;
+package org.dreamcat.lucy.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.dreamcat.lucy.service.CodeService;

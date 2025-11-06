@@ -1,4 +1,4 @@
-package org.dreamcat.lucy.config;
+package org.dreamcat.lucy.common.config;
 
 import lombok.Data;
 import org.dreamcat.rita.annotation.InjectedProperties;
